@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vwsnode-app
+  name: vws-app
   namespace: vws-app
 spec:
   replicas: 2
@@ -12,11 +12,11 @@ spec:
       maxUnavailable: 25%  
   selector:
     matchLabels:
-      app: vwsnode-app
+      app: vws-app
   template:
     metadata:
       labels:
-        app: vwsnode-app
+        app: vws-app
         role: frontend
     spec:
       nodeSelector:
@@ -52,6 +52,6 @@ spec:
             periodSeconds: 3            
         env:
         - name: backend
-          value: "vwsnode-backend-service.backend.svc.cluster.local"
+          value: "vws-backend-service.vws-app.svc.cluster.local"
         - name: backendport
           value: "3001"
