@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vwsnode-app
+  name: vws-backend
   namespace: vws-app
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -12,46 +12,44 @@ spec:
       maxUnavailable: 25%  
   selector:
     matchLabels:
-      app: vwsnode-app
+      app: vws-backend
   template:
     metadata:
       labels:
-        app: vwsnode-app
-        role: frontend
+        app: vws-backend
+        role: backend
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
       - name: vwsnode
         image: welasco/nodejsportexhaustion
-        #image: welasco/nodejssockethttpserver        
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
             memory: "128Mi"
-            cpu: "500m"        
+            cpu: "500m"          
+        #image: welasco/nodejssockethttpserver
         ports:
-        - containerPort: 3000
+        - containerPort: 3001
         readinessProbe:
             httpGet:
                path: /
-               port: 3000
+               port: 3001
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1        
         livenessProbe:
             httpGet:
                 path: /
-                port: 3000
+                port: 3001
                 httpHeaders:
                 - name: Custom-Header
                   value: Awesome
             initialDelaySeconds: 3
-            periodSeconds: 3            
+            periodSeconds: 3     
         env:
-        - name: backend
-          value: "vwsnode-backend-service.backend.svc.cluster.local"
-        - name: backendport
-          value: "3001"
+          - name: PORT
+            value: "3001"            
