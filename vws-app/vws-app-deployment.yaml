@@ -4,7 +4,7 @@ metadata:
   name: vwsnode-app
   namespace: vws-app
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
