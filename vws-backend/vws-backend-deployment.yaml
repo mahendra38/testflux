@@ -3,8 +3,11 @@ kind: Deployment
 metadata:
   name: vws-backend
   namespace: vws-app
+  labels:
+    version: v1
+    app: vws-backend
 spec:
-  replicas: 3
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -13,10 +16,12 @@ spec:
   selector:
     matchLabels:
       app: vws-backend
+      version: v1
   template:
     metadata:
       labels:
         app: vws-backend
+        version: v1
         role: backend
     spec:
       nodeSelector:
