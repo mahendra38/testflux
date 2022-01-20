@@ -4,8 +4,8 @@ metadata:
   name: vws-backend
   namespace: vws-app
   labels:
-    version: v1
     app: vws-backend
+    version: v1
 spec:
   replicas: 2
   strategy:
