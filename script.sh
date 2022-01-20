@@ -14,4 +14,7 @@ az k8s-configuration flux update -g AKS -c vwsaks -n gitops-demo -t managedClust
 
 # az k8s-configuration flux update -g AKS -c vwsaks -n gitops-demo -t managedClusters -u https://github.com/Welasco/testflux2.git --sync-interval 2m --branch main  --kustomization name=vws-app path=./vws-app prune=true syncIntervalInSeconds=120 --kustomization name=vws-backend path=./vws-backend prune=true dependsOn=["vws-app"]
 # Look for a flux reconcile for AKS
+# flux reconcile source git -n vws-app vws-app
 
+az k8s-configuration flux kustomization update -g AKS -c vwsaks -n gitops-demo -t managedClusters -k vws-app --interval 2m
+az k8s-configuration flux kustomization update -g AKS -c vwsaks -n gitops-demo -t managedClusters -k vws-backend --interval 2m
