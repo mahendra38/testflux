@@ -18,3 +18,5 @@ az k8s-configuration flux update -g AKS -c vwsaks -n gitops-demo -t managedClust
 
 az k8s-configuration flux kustomization update -g AKS -c vwsaks -n gitops-demo -t managedClusters -k vws-app --interval 2m
 az k8s-configuration flux kustomization update -g AKS -c vwsaks -n gitops-demo -t managedClusters -k vws-backend --interval 2m
+
+az k8s-configuration flux delete -g AKS -c vwsaks -n gitops-demo -t managedClusters
