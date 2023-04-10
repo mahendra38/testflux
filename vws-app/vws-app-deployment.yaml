@@ -9,7 +9,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 25%  
+      maxUnavailable: 25%
   selector:
     matchLabels:
       app: vws-app
@@ -24,14 +24,14 @@ spec:
       containers:
       - name: vwsnode
         image: welasco/nodejsportexhaustion
-        #image: welasco/nodejssockethttpserver        
+        #image: welasco/nodejssockethttpserver
         resources:
           requests:
             memory: "64Mi"
-            cpu: "250m"
+            cpu: "100m"
           limits:
             memory: "128Mi"
-            cpu: "500m"        
+            cpu: "500m"
         ports:
         - containerPort: 3000
         readinessProbe:
@@ -40,7 +40,7 @@ spec:
                port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
-            successThreshold: 1        
+            successThreshold: 1
         livenessProbe:
             httpGet:
                 path: /
@@ -49,7 +49,7 @@ spec:
                 - name: Custom-Header
                   value: Awesome
             initialDelaySeconds: 3
-            periodSeconds: 3            
+            periodSeconds: 3
         env:
         - name: backend
           value: "vws-backend-service.vws-app.svc.cluster.local"
