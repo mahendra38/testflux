@@ -4,7 +4,7 @@ metadata:
   name: vws-app
   namespace: vws-app
 spec:
-  replicas: 1
+  #replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
