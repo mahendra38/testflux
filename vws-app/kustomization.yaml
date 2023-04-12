@@ -6,4 +6,5 @@ resources:
   - vws-app-namespace.yaml
   - vws-app-deployment.yaml
   - vws-app-service.yaml
+  - vws-app-hpa.yaml
   - vws-app-ingress.yaml
