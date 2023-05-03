@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: vws-app
   labels:
-    istio-injection: enabled
+    #istio-injection: enabled
