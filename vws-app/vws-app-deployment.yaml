@@ -55,3 +55,5 @@ spec:
           value: "vws-backend-service.vws-app.svc.cluster.local"
         - name: backendport
           value: "3001"
+        - name: environment
+          value: "vws-app"
